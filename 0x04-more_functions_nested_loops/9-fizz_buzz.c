@@ -15,19 +15,19 @@ int main(void)
 	{
 		if (i % 3 == 0 && i % 5 != 0)
 		{
-			_putchar(" Fizz");
+			return (Fizz);
 		} else if (i % 5 == 0 && i % 3 != 0)
 		{
-			_putchar(" Buzz");
+			return (Buzz);
 		} else if (i % 3 == 0 && i % 5 == 0)
 		{
-			_putchar(" FizzBuzz");
+			return (FizzBuzz);
 		} else if (i == 1)
 		{
-			_putchar(i);
+			return (i);
 		} else
 		{
-			_putchar(i);
+			return (i);
 		}
 	}
 	_putchar('\n');
