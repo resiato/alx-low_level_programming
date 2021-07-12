@@ -2,11 +2,11 @@
 #include "holberton.h"
 
 /**
- *  * _atoi - converts a string to an integer
- *   * @s: string to be converted
- *    *
- *     * Return: the int converted from the string
- *      */
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
+ *
+ * Return: the int converted from the string
+ */
 int _atoi(char *s)
 {
 	int i, d, n, len, f, digit;
@@ -17,15 +17,15 @@ int _atoi(char *s)
 	len = 0;
 	f = 0;
 	digit = 0;
-	
+
 	while (s[len] != '\0')
 		len++;
-	
+
 	while (i < len && f == 0)
 	{
 		if (s[i] == '-')
 			++d;
-		
+
 		if (s[i] >= '0' && s[i] <= '9')
 		{
 			digit = s[i] - '0';
@@ -39,26 +39,26 @@ int _atoi(char *s)
 		}
 		i++;
 	}
-	
+
 	if (f == 0)
 		return (0);
-	
+
 	return (n);
 }
 
 /**
- *  * main - adds two positive number
- *   * @argc: number of arguments
- *    * @argv: array of arguents
- *     *
- *      * Return: 0 (Success), or 1 (Success)
- *       */
+ * main - adds two positive number
+ * @argc: number of arguments
+ * @argv: array of arguents
+ *
+ * Return: 0 (Success), or 1 (Success)
+ */
 int main(int argc, char *argv[])
 {
 	int sum, num, i, j, k;
-	
+
 	sum = 0;
-	
+
 	for (i = 1; i < argc; i++)
 	{
 		for (j = 0; argv[i][j] != '\0'; j++)
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	
+
 	for (k = 1; k < argc; k++)
 	{
 		num = _atoi(argv[k]);
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 			sum += num;
 		}
 	}
-	
+
 	printf("%d\n", sum);
 	return (0);
 }
