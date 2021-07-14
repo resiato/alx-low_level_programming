@@ -1,46 +1,58 @@
 #include "holberton.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 /**
- * argstostr - Creates a string from the concatenation of all the
- * arguments of a program
- * @ac: Number of arguments
- * @av: The array of arguments
- * Return: a pointer to a new string, or NULL if it fails
- * Each argument should be followed by a \n in the new string
- */
+ * _strlen - returns the length of the string
+ * @s: input string to count
+ * Description: returns the length of a given string
+ * Return: length of string as int
+ **/
+int _strlen(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+		;
+	return (i + 1);
+}
+/**
+ * argstostr - concatenates all arguments of program
+ * @ac: number of arguments
+ * @av: arguments, pointer to strings
+ * Description: concatenate all args to one string, separated by \n
+ * Return: pointer to string, NULL if fails
+ **/
 char *argstostr(int ac, char **av)
 {
-	int i, j;
-	char *str;
-	int length = 0;
+	char *dest;
+	unsigned int size, i, j, k;
 
-	if (ac == 0 || av == NULL)
+	size = 0;
+	k = 0;
+
+	if (ac <= 0 || av == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
+
+	for (i = 0; i < (unsigned int)ac; i++)
 	{
-		for (j = 0; *(*(av + i) + j) != '\0'; j++)
-			length++;
+		size += _strlen(av[i]);
 	}
-	str = malloc(sizeof(char) * (length + i + 1));
-	if (str)
+
+	dest = (char *)malloc((size + 1) * sizeof(char));
+
+	if (dest == NULL)
+		return (NULL);
+
+	for (i = 0; i < (unsigned int)ac; i++)
 	{
-		length = 0;
-		for (i = 0; i < ac; i++)
+		for (j = 0; av[i][j] != '\0'; j++)
 		{
-			for (j = 0; *(*(av + i) + j) != '\0'; j++)
-			{
-				*(str + length) = *(*(av + i) + j);
-				length++;
-			}
-			*(str + length) = '\n';
-			length++;
+			dest[k] = av[i][j];
+			k++;
 		}
-		*(str + length) = '\0';
-		return (str);
+		dest[k] = '\n';
+		k++;
 	}
-	else
-	{
-		return (NULL);
-	}
+	dest[k] = '\0';
+	return (dest);
 }
