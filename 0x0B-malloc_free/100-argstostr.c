@@ -1,45 +1,46 @@
-#include <stdlib.h>
 #include "holberton.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 /**
- * *argstostr - concatenates all the arguments of the program
- * @ac: number of arguments
- * @av: array of arguments
- *
- * Return: Pointer to the new string (Success), NULL (Error)
+ * argstostr - Creates a string from the concatenation of all the
+ * arguments of a program
+ * @ac: Number of arguments
+ * @av: The array of arguments
+ * Return: a pointer to a new string, or NULL if it fails
+ * Each argument should be followed by a \n in the new string
  */
 char *argstostr(int ac, char **av)
 {
-	int i, j, k, len;
+	int i, j;
 	char *str;
+	int length = 0;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-
 	for (i = 0; i < ac; i++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-			len++;
-		len++;
+		for (j = 0; *(*(av + i) + j) != '\0'; j++)
+			length++;
 	}
-
-	str = malloc(sizeof(char) * (len + 1));
-
-	if (str == NULL)
-		return (NULL);
-
-	k = 0;
-
-	for (i = 0; i < ac; i++)
+	str = malloc(sizeof(char) * (length + i + 1));
+	if (str)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		length = 0;
+		for (i = 0; i < ac; i++)
 		{
-			str[k] = av[i][j];
-			k++;
+			for (j = 0; *(*(av + i) + j) != '\0'; j++)
+			{
+				*(str + length) = *(*(av + i) + j);
+				length++;
+			}
+			*(str + length) = '\n';
+			length++;
 		}
-		str[k] = '\n';
-		k++;
+		*(str + length) = '\0';
+		return (str);
 	}
-
-	return (str);
+	else
+	{
+		return (NULL);
+	}
 }
